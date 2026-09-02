@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 
 const Navbar = () => {
@@ -22,21 +23,24 @@ const Navbar = () => {
                             </a>
                             <div className="md:ml-auto">
                                 <div className="flex space-x-2">
-                                    <a
-                                        href="/"
+                                    <Link
+                                        to="/"
                                         className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                                    >Home</a
                                     >
-                                    <a
-                                        href="/jobs"
+                                        Home
+                                    </Link>
+                                    <Link
+                                        to="/jobs"
                                         className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                                    >Jobs</a
                                     >
-                                    <a
-                                        href="/add-job"
+                                        Jobs
+                                    </Link>
+                                    <Link
+                                        to="/add-job"
                                         className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                                    >Add Job</a
                                     >
+                                        Add Job
+                                    </Link>
                                 </div>
                             </div>
                         </div>
