@@ -36,19 +36,15 @@ const addJobSubmit = async (newJob) => {
 
 // Delete function to handle job deletion
 const deleteJob = async (jobId) => {
-  try {
-    const response = await fetch(`/api/jobs/${jobId}`, {
-      method: 'DELETE',
-    });
+  const response = await fetch(`/api/jobs/${jobId}`, {
+    method: 'DELETE',
+  });
 
-    if (!response.ok) {
-      throw new Error('Failed to delete job');
-    }
-
-    console.log('Job deleted successfully');
-  } catch (error) {
-    console.error('Error deleting job:', error);
+  if (!response.ok) {
+    throw new Error('Failed to delete job');
   }
+
+  console.log('Job deleted successfully');
 }
 
 

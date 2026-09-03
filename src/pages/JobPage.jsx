@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useLoaderData, Link, useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner';
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa'
+import { toast } from 'react-toastify';
 
 
 // const JobPage = () => {
@@ -45,9 +46,14 @@ const JobPage = ({ deleteJob }) => {
             return;
         }
 
-        deleteJob(jobId);
-
-        navigate('/jobs');
+        try {
+            await deleteJob(jobId);
+            toast.success('Job deleted successfully!');
+            navigate('/jobs');
+        } catch (error) {
+            toast.error('Failed to delete job');
+            console.error('Error deleting job:', error);
+        }
     }
     return (
         <>
