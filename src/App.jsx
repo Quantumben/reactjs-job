@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import JobPage, { jobLoader } from './pages/JobPage'
 import AddJobPage from './pages/AddJobPage'
+import EditJobPage from './pages/EditJobPage'
 
 // Function to handle job submission
 const addJobSubmit = async (newJob) => {
@@ -47,6 +48,22 @@ const deleteJob = async (jobId) => {
   console.log('Job deleted successfully');
 }
 
+// Update function to handle job updates
+const updateJobSubmit = async (jobId, updatedJob) => {
+  const response = await fetch(`/api/jobs/${jobId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedJob),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update job');
+  }
+
+  return response.json();
+}
 
 
 const App = () => {
@@ -62,7 +79,11 @@ const App = () => {
           element={<JobPage deleteJob={deleteJob} />}
           loader={jobLoader}
         />
-        
+        <Route
+          path="/edit-job/:id"
+          element={<EditJobPage updateJobSubmit={updateJobSubmit} />}
+          loader={jobLoader}
+        />
         <Route
           path="/add-job"
           element={<AddJobPage addJobSubmit={addJobSubmit} />}
